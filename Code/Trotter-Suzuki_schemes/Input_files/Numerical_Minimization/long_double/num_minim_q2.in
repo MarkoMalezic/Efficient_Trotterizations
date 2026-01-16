@@ -1,10 +1,10 @@
 # Routine and mode specification
 routine = 0
 mode = 0
-scalar_type = double
+scalar_type = long_double
 
 # Save directory path (if empty no writing occurs)
-save_dir = ../Data/Numerical_Minimization/double/
+#save_dir = ../../../Data/Numerical_Minimization/long_double/
 
 # General parameters
 order = 2

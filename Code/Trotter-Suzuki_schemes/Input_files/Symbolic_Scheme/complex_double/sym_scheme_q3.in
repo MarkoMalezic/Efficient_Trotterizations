@@ -4,7 +4,7 @@ mode = 1
 scalar_type = complex_double
 
 # Save directory path (if empty no writing occurs)
-#save_dir = save_dir = path_to_dir/saved_schemes
+#save_dir = ../../../Data/Symbolic_Scheme/complex_double/
 
 # General parameters
 order = 6
@@ -14,6 +14,6 @@ no_cycles = 3
 method = scratch
 a_eval = 0.6756035959798299 + i0.1345862724908056, 0.3243964040201701 - i0.1345862724908056
 b_eval = 0.3512071919596575 + i0.2691725449816106, 0.6487928080403425 - i0.2691725449816106
-load_dir = ../Data/Symbolic_Scheme/double/saved_schemes
+#load_dir = ../../../Data/Symbolic_Scheme/double/saved_schemes
 steps = 1
 verbose = 1

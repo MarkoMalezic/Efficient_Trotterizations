@@ -4,7 +4,7 @@ mode = 1
 scalar_type = long_double
 
 # Save directory path (if empty no writing occurs)
-save_dir = ../Data/Symbolic_Minimization/long_double/
+#save_dir = ../../../Data/Symbolic_Minimization/long_double/
 
 # General parameters
 order = 6
@@ -14,7 +14,7 @@ no_cycles = 8
 method = min_twostep
 a_init = 0.0000000000000029, 2.3909766455268460, -2.1425064540200633, -0.6962527539060669, 1.4477825623992810
 b_init = 2.3894477832437402, 0.0030577245685020, -4.2880706326108609, 2.8955651247986185
-load_dir = ../Data/Symbolic_Scheme/long_double/saved_schemes/
+#load_dir = ../../../Data/Symbolic_Scheme/long_double/saved_schemes/
 bderivs = true
 # Minimization hyperparameters
 eps1 = 1e-20, 1e-20, 1e-36, 1e-3

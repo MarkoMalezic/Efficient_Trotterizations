@@ -4,7 +4,7 @@ mode = 1
 scalar_type = long_double
 
 # Save directory path (if empty no writing occurs)
-#save_dir = save_dir = path_to_dir/saved_schemes
+#save_dir = ../../../Data/Symbolic_Scheme/long_double/
 
 # General parameters
 order = 6
@@ -14,6 +14,6 @@ no_cycles = 8
 method = scratch
 a_eval = -0.00000000000000000040, 0.13750633650504021418, -0.94210677081951287580, 1.02008682383691539730, 0.78451361047755726474
 b_eval = 1.31518632068391121419, -2.35535996835774200878, 0.47114642671871626942, 1.56902722095511452515
-load_dir = ../Data/Symbolic_Scheme/long_double/saved_schemes/
+#load_dir = ../../../Data/Symbolic_Scheme/long_double/saved_schemes/
 steps = 1
 verbose = 1

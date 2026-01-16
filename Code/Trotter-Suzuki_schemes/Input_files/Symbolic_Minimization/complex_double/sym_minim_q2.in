@@ -4,7 +4,7 @@ mode = 1
 scalar_type = complex_double
 
 # Save directory path (if empty no writing occurs)
-save_dir = ../Data/Symbolic_Minimization/complex_double/
+#save_dir = ../../../Data/Symbolic_Minimization/complex_double/
 
 # General parameters
 order = 2
@@ -14,6 +14,8 @@ no_cycles = 2
 method = find
 a_init = 0.6 + i0.0, 0.4 - i0.0
 b_init = 1.00 + i0.0
+#load_dir = ../../../Data/Symbolic_Scheme/complex_double/saved_schemes/
+bderivs = true
 # Minimization hyperparameters
 eps1 = 1e-15, 1e-15, 1e-30, 1e-3
 #eps2 = 1e-22, 1e-22, 0.0, 1e-3

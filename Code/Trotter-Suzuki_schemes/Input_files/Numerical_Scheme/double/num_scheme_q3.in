@@ -4,7 +4,7 @@ mode = 0
 scalar_type = double
 
 # Save directory path (if empty no writing occurs)
-save_dir = ../Data/Numerical_Scheme/double/
+#save_dir = ../../../Data/Numerical_Scheme/double/
 
 # General parameters
 order = 6

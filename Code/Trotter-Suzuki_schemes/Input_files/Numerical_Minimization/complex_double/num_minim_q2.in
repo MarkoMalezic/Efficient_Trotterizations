@@ -4,7 +4,7 @@ mode = 0
 scalar_type = complex_double
 
 # Save directory path (if empty no writing occurs)
-save_dir = ../Data/Numerical_Minimization/complex_double/
+#save_dir = ../../../Data/Numerical_Minimization/complex_double/
 
 # General parameters
 order = 2
