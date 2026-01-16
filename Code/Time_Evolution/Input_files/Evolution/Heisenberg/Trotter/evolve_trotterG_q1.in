@@ -1,0 +1,25 @@
+# Routine (0 - Time evolution, 1 - Error estimation)
+routine = 0
+
+# Save file path (if empty no writing occurs)
+save_file = ../Data/Evolution/Trotter/evolve_trotterG_q1.out
+
+# Model parameters
+model = ModelXZ
+L = 3
+bound = false
+J = 1.0
+hmag = random
+
+# Time evolution parameters
+
+# General parameters
+method = trotter
+psi = random
+t = 1.0
+h = 0.001
+# Trotter decomposition parameters
+q = 1
+group = true
+a_vec = 1.0
+b_vec = 1.0

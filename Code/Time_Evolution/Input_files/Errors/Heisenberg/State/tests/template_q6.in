@@ -1,0 +1,25 @@
+# Routine (0 - Time evolution, 1 - Error estimation)
+routine = 1
+
+# Save file path (if empty no writing occurs)
+save_file = 
+
+# Model parameters
+model = ModelXZ
+L = 6
+bound = false
+J = 1.0
+hmag = 0.0680375434309419, -0.021123414636181396, 0.05661984475172118, 0.059688006695214665, 0.08232947158735687, -0.06048972614132321
+
+# Time evolution parameters
+
+# General parameters
+method = state
+t = 10.0
+N_steps = 167
+imag_time = false
+# Trotter decomposition parameters
+q = 6
+group = true
+a_vec = 0.21937695575349960000, -0.08413016071543900000, 0.70634581209954810000, 0.15840739286239140001
+b_vec = 0.86867333313291200003, -0.28770354635963599999, 0.41903021322672399999

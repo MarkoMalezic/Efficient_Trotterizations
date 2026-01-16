@@ -1,0 +1,20 @@
+# Routine (0 - Time evolution, 1 - Error estimation)
+routine = 0
+
+# Save file path (if empty no writing occurs)
+save_file = ../Data/Evolution/Exact/evolve_exact.out
+
+# Model parameters
+model = ModelXZ
+L = 3
+bound = false
+J = 1.0
+hmag = random
+
+# Time evolution parameters
+
+# General parameters
+method = exact
+psi = random
+t = 1.0
+h = 0.001

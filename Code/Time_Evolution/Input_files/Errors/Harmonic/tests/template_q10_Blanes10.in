@@ -1,0 +1,24 @@
+# Routine (0 - Time evolution, 1 - Error estimation)
+routine = 1
+
+# Save file path (if empty no writing occurs)
+save_file = 
+
+# Model parameters
+model = Harmonic
+xmax = 10.0
+Nx = 2000
+m = 1.0
+omega = 1.0
+Nphi0 = 5
+Ncut = 23
+
+# Time evolution parameters
+# General parameters
+tmax = 200.0
+Nt = 600
+# Trotter decomposition parameters
+scheme = q10_Blanes10
+q = 10
+a_vec = -0.72552555850868970000, 1.08392135690155999995, -0.37610970763913799999, 0.09015977958879540000, 0.82702860085668800002, 0.10052552880078440000
+b_vec = -0.03280917880723600000, 0.86533280515635000000, 0.13461520938437000000, -0.26477173153556799999, 0.29763289580208399999

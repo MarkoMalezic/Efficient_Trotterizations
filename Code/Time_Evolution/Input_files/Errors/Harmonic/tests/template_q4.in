@@ -1,0 +1,24 @@
+# Routine (0 - Time evolution, 1 - Error estimation)
+routine = 1
+
+# Save file path (if empty no writing occurs)
+save_file = 
+
+# Model parameters
+model = Harmonic
+xmax = 10.0
+Nx = 2000
+m = 1.0
+omega = 1.0
+Nphi0 = 5
+Ncut = 23
+
+# Time evolution parameters
+# General parameters
+tmax = 200.0
+Nt = 1500
+# Trotter decomposition parameters
+scheme = q4_origin_S0
+q = 4
+a_vec = 0.5307253808205604, -0.1744959882945757, 0.6437706074740153
+b_vec = 1.3338107312784897, -0.3338107312784897

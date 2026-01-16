@@ -1,0 +1,23 @@
+# Routine (0 - Time evolution, 1 - Error estimation)
+routine = 1
+
+# Save file path (if empty no writing occurs)
+save_file = 
+
+# Model parameters
+model = Harmonic
+xmax = 30.0
+Nx = 3000
+m = 1.0
+omega = 1.0
+Ncut = 23
+
+# Time evolution parameters
+# General parameters
+tmax = 20.0
+Nt = 100
+# Trotter decomposition parameters
+scheme = Leapfrog
+q = 1
+a_vec = 1.0
+b_vec = 1.0

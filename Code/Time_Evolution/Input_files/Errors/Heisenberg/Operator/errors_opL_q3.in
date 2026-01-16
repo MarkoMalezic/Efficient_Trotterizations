@@ -1,0 +1,24 @@
+# Routine (0 - Time evolution, 1 - Error estimation)
+routine = 1
+
+# Save file path (if empty no writing occurs)
+save_file = 
+
+# Model parameters
+model = ModelXZ
+L = 6
+bound = false
+J = 1.0
+hmag = random
+
+# Time evolution parameters
+
+# General parameters
+method = operator
+t = 1.0
+h = 0.001
+# Trotter decomposition parameters
+q = 3
+group = false
+a_vec = -0.35120719195965763421, 1.35120719195965763423
+b_vec = -1.70241438391931526716, 2.70241438391931526716
