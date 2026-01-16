@@ -1,0 +1,430 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xcolor}
+%\usepackage[dvipsnames]{xcolor}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+\usepackage{caption}
+\usepackage{hyperref}
+%\hypersetup{colorlinks=true}
+\hypersetup{hidelinks=true}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\author{Marko Maležič, Johann Ostmeyer}
+\title{Recursive Formulae for Trotter-Suzuki Decompositions}
+
+\begin{document}
+
+\vfill
+\maketitle
+\vfill
+
+\section*{Introduction}
+
+In this document we gather the results of our derivations within the Mathematica notebook (Efficient\_Trotterizations.nb).
+First we define our basis for each order $n$, which is written in terms of right-nested commutators as described by Arnal \textit{et al.} (2021).
+We also symmetrize the basis according to the symmetry $A \leftrightarrow B$, which allows us to derive the recursive formulae for one of the steps only (we choose the step with the $A$ operator).
+For orders $n \geq 6$ there also exist identities, which help reduce the total number of basis commutators.
+We also write down these relations.
+
+In the second part we present the recursive formulae for the scheme coefficients $\alpha_{A}^{(i, i-1)}$, $\beta_{A}^{(i, i-1)}$, $\gamma_{j, A}^{(i, i-1)}$, \ldots
+These are written down in terms of the step done with the commutator $A$.
+By replacing the parameters $a_{i}$ with $b_{i}$ and the scheme coefficients with their respective counterparts, it is possible to find the formulae for the step in the $B$ operator.
+
+\vfill
+
+\newpage
+
+\subsection*{Basis}
+
+\subsubsection*{$\mathbf{2}^{\textrm{nd}}$ order}
+
+\vspace{0.1cm}
+
+\begin{equation}
+  \begin{aligned}
+    C_{1} &= \left [ A^{2} B \right ], & \tilde{\alpha} &= - \frac{1}{24}, \\
+    C_{2} &= \left [ B^{2} A \right ], & \tilde{\beta} &= \frac{1}{12}.
+  \end{aligned}
+\end{equation}
+
+\vspace{0.1cm}
+
+\subsubsection*{$\mathbf{4}^{\textrm{th}}$ order}
+
+\vspace{0.1cm}
+
+\begin{equation}
+  \begin{aligned}
+    D_{1} &= \left [ A^{4} B \right ] = \left [ A^{2} C_{1} \right ],  & \tilde{\gamma}_{1} &= \frac{7}{5760}, \\
+    D_{2} &= \left [ A^{2} B A B \right ] = - \left [ A^{2} C_{2} \right ] = \left [ A B A^{2} B \right ] = \left [ A B C_{1} \right ],  & \tilde{\gamma}_{2} &= \frac{1}{480}, \\
+    D_{3} &= \left [ B A^{3} B \right ] = \left [ B A C_{1} \right ],  & \tilde{\gamma}_{3} &= \frac{1}{360}, \\
+    D_{4} &= \left [ A B^{3} A \right ] = \left [ A B C_{2} \right ],  & \tilde{\gamma}_{4} &= \frac{1}{360}, \\
+    D_{5} &= \left [ B^{2} A B A \right ] = - \left [ B^{2} C_{1} \right ] = \left [ B A B^{2} A \right ] = \left [ B A C_{2} \right ],  & \tilde{\gamma}_{5} &= - \frac{1}{120}, \\
+    D_{6} &= \left [ B^{4} A \right ] = \left [ B^{2} C_{2} \right ],  & \tilde{\gamma}_{6} &= -\frac{1}{720}.
+  \end{aligned}
+\end{equation}
+
+\vspace{0.1cm}
+
+\subsubsection*{$\mathbf{6}^{\textrm{th}}$ order}
+
+\vspace{0.1cm}
+
+\begin{equation}
+  \begin{aligned}
+    E_{1} &= \left [ A^{6} B \right ] = \left [ A^{2} D_{1} \right ], & \tilde{\delta}_{1} &= -\frac{31}{967 680}, \\
+    E_{2} &= \left [ A^{2} B A^{3} B \right ] = \left [ A^{2} D_{3} \right ], & \tilde{\delta}_{2} &= -\frac{19}{80 640}, \\
+    E_{3} &= \left [ A B A^{4} B \right ] = \left [ A B D_{1} \right ], & \tilde{\delta}_{3} &= \frac{23}{161 280}, \\
+    E_{4} &= \left [ B A^{5} B \right ] = \left [ B A D_{1} \right ], & \tilde{\delta}_{4} &= -\frac{1}{10 080}, \\
+    E_{5} &= \left [ A^{2} B A B A B \right ] = \left [ A^{2} B^{2} A^{2} B \right ] = -\left [ A^{2} D_{5} \right ], & \tilde{\delta}_{5} &= -\frac{1}{10 080}, \\
+    E_{6} &= \left [ A B A^{2} B A B \right ] = \left [ A B A B A^{2} B \right ] = \left [ A B D_{2} \right ], & \tilde{\delta}_{6} &= -\frac{1}{20 160}, \\
+    E_{7} &= \left [ A B^{2} A^{3} B \right ] = \left [ A B D_{3} \right ], & \tilde{\delta}_{7} &= \frac{13}{60 480}, \\
+    E_{8} &= \left [ B A B A^{3} B \right ] = \left [ B A D_{3} \right ], & \tilde{\delta}_{8} &= -\frac{1}{5040}, \\
+    E_{9} &= \left [ B A^{3} B A B \right ] = \left [ B A^{2} B A^{2} B \right ] = \left [ B A D_{2} \right ], & \tilde{\delta}_{9} &= -\frac{1}{3360}, \\
+  \end{aligned}
+\end{equation}
+
+\vspace{0.1cm}
+
+\begin{equation}
+  \begin{aligned}
+    E_{10} &= \left [ A B^{3} A B A \right ] = \left [ A B^{2} A B^{2} A \right ] = \left [ A B D_{5} \right ], & \tilde{\delta}_{10} &= -\frac{19}{40 320}, \\
+    E_{11} &= \left [ A B A B^{3} A \right ] = \left [ A B D_{4} \right ], & \tilde{\delta}_{11} &= \frac{1}{6720}, \\
+    E_{12} &= \left [ B A^{2} B^{3} A \right ] = \left [ B A D_{4} \right ], & \tilde{\delta}_{12} &= -\frac{1}{7560}, \\
+    E_{13} &= \left [ B A B^{2} A B A \right ] = \left [ B A B A B^{2} A \right ] = \left [ B A D_{5} \right ], & \tilde{\delta}_{13} &= \frac{1}{1008}, \\
+    E_{14} &= \left [ B^{2} A B A B A \right ] = \left [ B^{2} A^{2} B^{2} A \right ] = -\left [ B^{2} D_{2} \right ], & \tilde{\delta}_{14} &= -\frac{1}{10 080}, \\
+    E_{15} &= \left [ A B^{5} A \right ] = \left [ A B D_{6} \right ], & \tilde{\delta}_{15} &= -\frac{1}{10 080}, \\
+    E_{16} &= \left [ B A B^{4} A \right ] = \left [ B A D_{6} \right ], & \tilde{\delta}_{16} &= \frac{1}{10 080}, \\
+    E_{17} &= \left [ B^{2} A B^{3} A \right ] = \left [ B^{2} D_{4} \right ], & \tilde{\delta}_{17} &= \frac{1}{5040}, \\
+    E_{18} &= \left [ B^{6} A \right ] = \left [ B^{2} D_{6} \right ], & \tilde{\delta}_{18} &= \frac{1}{30 240}.
+  \end{aligned}
+\end{equation}
+
+\vspace{0.5cm}
+
+\begin{equation}
+  \begin{aligned}
+    \left [ A^{4} B A B \right ] = \left [ A^{3} B A^{2} B \right ] = \left [ A^{2} D_{2} \right ] &= 2 E_{2} - E_{3}, \\
+    \left [ A^{3} B^{2} A B \right ] = - \left [ A^{2} D_{4} \right ] &= 3 E_{5} - 3 E_{6} + E_{7}, \\
+    \left [ B^{2} A^{4} B \right ] = \left [ B^{2} D_{1} \right ] &= 2 E_{8} - E_{9}, \\
+    \left [ A^{2} B^{4} A \right ] = \left [ A^{2} D_{6} \right ] &= 2 E_{11} - E_{10}, \\
+    \left [ B^{3} A^{2} B A \right ] = - \left [ B^{2} D_{3} \right ] &= 3 E_{14} - 3 E_{13} + E_{12}, \\
+    \left [ B^{4} A B A \right ] = \left [ B^{3} A B^{2} A \right ] = \left [ B^{2} D_{5} \right ] &= 2 E_{17} - E_{16}.
+  \end{aligned}
+\end{equation}
+
+\newpage
+
+\subsection*{Coefficient recursive formulae}
+
+\subsubsection*{$\mathbf{2}^{\textrm{nd}}$ order}
+
+\vspace{0.2cm}
+
+% alpha
+\begin{equation}
+  \begin{aligned}
+    \alpha_{A}^{(i, i-1)} &= \alpha_{B}^{(i-1, i-1)} + \tilde{\alpha} a_{i}^{2} \sigma^{(i-1)} - \tilde{\beta} a_{i} \nu^{(i-1)} \sigma^{(i-1)}, \\
+  \end{aligned}
+\end{equation}
+
+% beta
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.12\linewidth}\beta_{A}^{(i, i-1)} &= \beta_{B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \left( \sigma^{(i-1)} \right)^{2}.
+  \end{aligned}
+\end{equation}
+
+\subsubsection*{$\mathbf{4}^{\textrm{th}}$ order}
+
+\vspace{0.2cm}
+
+% gamma 1
+{\small
+\begin{equation}
+  \begin{aligned}
+    \hspace{0.0\linewidth} \gamma_{1, A}^{(i, i-1)} &= \gamma_{1, B}^{(i-1, i-1)} + \tilde{\gamma}_{1} a_{i}^{4} \sigma^{(i-1)} + \left(\tilde{\gamma}_{2} + \tilde{\gamma}_{3} \right) a_{i}^{3} \nu^{(i-1)} \sigma^{(i-1)} - \left(\tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \left(\nu^{(i-1)} \right)^{2} \sigma^{(i-1)} - \\
+    \hspace{0.0\linewidth} &\quad - \tilde{\gamma}_{6} a_{i} \left(\nu^{(i-1)} \right)^{3} \sigma^{(i-1)} + \tilde{\alpha} a_{i}^{2} \alpha_{B}^{(i-1, i-1)} - \tilde{\beta} a_{i} \nu^{(i-1)} \alpha_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% gamma 2
+{\small
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.175\linewidth} \gamma_{2, A}^{(i, i-1)} &= \gamma_{2, B}^{(i-1, i-1)} + \tilde{\gamma}_{2} a_{i}^{3} \left( \sigma^{(i-1)} \right)^{2} - \left(2 \tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \nu^{(i-1)} \left(\sigma^{(i-1)} \right)^{2} - \\
+    \hspace{-0.175\linewidth} &\quad - 2 \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{2} - \tilde{\alpha} a_{i}^{2} \beta_{B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} + \\
+    \hspace{-0.175\linewidth} &\quad + \tilde{\beta} a_{i} \nu^{(i-1)} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% gamma 3
+{\small
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.01\linewidth} \gamma_{3, A}^{(i, i-1)} &= \gamma_{3, B}^{(i-1, i-1)} + \tilde{\gamma}_{3} a_{i}^{3} \left( \sigma^{(i-1)} \right)^{2} - \tilde{\gamma}_{5} a_{i}^{2} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} - \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{2} - \\
+    \hspace{-0.01\linewidth} &\quad - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% gamma 4
+{\small
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.1\linewidth} \gamma_{4, A}^{(i, i-1)} &= \gamma_{4, B}^{(i-1, i-1)} + \tilde{\gamma}_{4} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{3} + \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{3} + \tilde{\beta} a_{i} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% gamma 5
+{\small
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.075\linewidth} \gamma_{5, A}^{(i, i-1)} &= \gamma_{5, B}^{(i-1, i-1)} + \tilde{\gamma}_{5} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{3} + 2 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{3} - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% gamma 6
+{\small
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.4675\linewidth} \gamma_{6, A}^{(i, i-1)} &= \gamma_{6, B}^{(i-1, i-1)} + \tilde{\gamma}_{6} a_{i} \left( \sigma^{(i-1)} \right)^{4}.
+  \end{aligned}
+\end{equation}
+}
+
+\subsubsection*{$\mathbf{6}^{\textrm{th}}$ order}
+
+\vspace{0.2cm}
+
+% delta 1
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.025\linewidth} \delta_{1, A}^{(i, i-1)} &= \delta_{1, B}^{(i-1, i-1)} + \tilde{\delta}_{1} a_{i}^{6} \sigma^{(i-1)} + \left( \tilde{\delta}_{2} + \tilde{\delta}_{3} + \tilde{\delta}_{4} \right) a_{i}^{5} \nu^{(i-1)} \sigma^{(i-1)} + \\
+    \hspace{-0.025\linewidth} &\quad + \left( \tilde{\delta}_{5} + \tilde{\delta}_{6} + \tilde{\delta}_{7} + \tilde{\delta}_{8} + \tilde{\delta}_{9} \right) a_{i}^{4} \left( \nu^{(i-1)} \right)^{2} \sigma^{(i-1)} - \\
+    \hspace{-0.025\linewidth} &\quad - \left( \tilde{\delta}_{10} + \tilde{\delta}_{11} + \tilde{\delta}_{12} + \tilde{\delta}_{13} + \tilde{\delta}_{14} \right) a_{i}^{3} \left( \nu^{(i-1)} \right)^{3} \sigma^{(i-1)} - \left( \tilde{\delta}_{15} + \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{4} \sigma^{(i-1)} - \\
+    \hspace{-0.025\linewidth} &\quad - \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{5} \sigma^{(i-1)} + \tilde{\gamma}_{1} a_{i}^4 \alpha_{B}^{(i-1, i-1)} + \left( \tilde{\gamma}_{2} + \tilde{\gamma}_{3} \right)  a_{i}^3 \nu^{(i-1)} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.025\linewidth} &\quad - \left( \tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} - \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{3} \alpha_{B}^{(i-1, i-1)} + \tilde{\alpha} a_{i}^{2} \gamma_{1, B}^{(i-1, i-1)} - \\
+    \hspace{-0.025\linewidth} &\quad - \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{1, B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 2
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.1375\linewidth} \delta_{2, A}^{(i, i-1)} &= \delta_{2, B}^{(i-1, i-1)} + \tilde{\delta}_{2} a_{i}^{5} \left( \sigma^{(i-1)} \right)^{2} + \left( 3 \tilde{\delta}_{5} + 2 \tilde{\delta}_{6} + \tilde{\delta}_{7} + \tilde{\delta}_{8} + 2 \tilde{\delta}_{9} \right) a_{i}^{4} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} - \\
+    \hspace{-0.1375\linewidth} &\quad - \left( 3 \tilde{\delta}_{10} + 4 \tilde{\delta}_{11} + 4 \tilde{\delta}_{12} + 3 \tilde{\delta}_{13} + 2 \tilde{\delta}_{14} \right) a_{i}^{3} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{2} - \\
+    \hspace{-0.1375\linewidth} &\quad - \left( 5 \tilde{\delta}_{15} + 5 \tilde{\delta}_{16} + 4 \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{2} - 5 \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{4} \left( \sigma^{(i-1)} \right)^{2} - \\
+    \hspace{-0.1375\linewidth} &\quad - 2 \tilde{\gamma}_{1} a_{i}^4 \beta_{B}^{(i-1, i-1)} + \tilde{\gamma}_{3} a_{i}^3 \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} - 2 \left( \tilde{\gamma}_{2} + \tilde{\gamma}_{3} \right) a_{i}^3 \nu^{(i-1)} \beta_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.1375\linewidth} &\quad - \tilde{\gamma}_{5} a_{i}^{2} \nu^{(i-1)} \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} + 2 \left( \tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.1375\linewidth} &\quad - \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} + 2 \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{3} \beta_{B}^{(i-1, i-1)} + 2 \tilde{\alpha} a_{i}^{2} \gamma_{2, B}^{(i-1, i-1)} + \\
+    \hspace{-0.1375\linewidth} &\quad + \tilde{\alpha} a_{i}^{2} \gamma_{3, B}^{(i-1, i-1)} - 2 \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{2, B}^{(i-1, i-1)} - \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{3, B}^{(i-1, i-1)} - \tilde{\beta} a_{i} \left(\alpha_{B}^{(i-1, i-1)} \right)^{2},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 3
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.07\linewidth} \delta_{3, A}^{(i, i-1)} &= \delta_{3, B}^{(i-1, i-1)} + \tilde{\delta}_{3} a_{i}^{5} \left( \sigma^{(i-1)} \right)^{2} - \left( \tilde{\delta}_{5} - \tilde{\delta}_{7} + \tilde{\delta}_{9} \right) a_{i}^{4} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} + \\
+    \hspace{-0.07\linewidth} &\quad + \left( \tilde{\delta}_{11} + 2 \tilde{\delta}_{12} + \tilde{\delta}_{13} \right) a_{i}^{3} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{2} + \left( \tilde{\delta}_{15} + 2 \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{2} + \\
+    \hspace{-0.07\linewidth} &\quad + \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{4} \left( \sigma^{(i-1)} \right)^{2} + \tilde{\gamma}_{1} a_{i}^4 \beta_{B}^{(i-1, i-1)} + \left(\tilde{\gamma}_{2} - 2 \tilde{\gamma}_{3} \right) a_{i}^3 \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} + \\
+    \hspace{-0.07\linewidth} &\quad + \left( \tilde{\gamma}_{2} + \tilde{\gamma}_{3} \right) a_{i}^3 \nu^{(i-1)} \beta_{B}^{(i-1, i-1)} - \left(2 \tilde{\gamma}_{4} - \tilde{\gamma}_{5} \right) a_{i}^{2} \nu^{(i-1)} \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.07\linewidth} &\quad - \left( \tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} - \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{3} \beta_{B}^{(i-1, i-1)} - \tilde{\alpha} a_{i}^{2} \gamma_{2, B}^{(i-1, i-1)} + \\
+    \hspace{-0.07\linewidth} &\quad + \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{1, B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{2, B}^{(i-1, i-1)} + 2 \tilde{\beta} a_{i} \left(\alpha_{B}^{(i-1, i-1)} \right)^{2},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 4
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.115\linewidth} \delta_{4, A}^{(i, i-1)} &= \delta_{4, B}^{(i-1, i-1)} + \tilde{\delta}_{4} a_{i}^{5} \left( \sigma^{(i-1)} \right)^{2} + \left( \tilde{\delta}_{8} + \tilde{\delta}_{9} \right) a_{i}^{4} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} - \\
+    \hspace{-0.115\linewidth} &\quad - \left( \tilde{\delta}_{12} + \tilde{\delta}_{13} + \tilde{\delta}_{14} \right) a_{i}^{3} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{2} - \left( \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{2} - \\
+    \hspace{-0.115\linewidth} &\quad - \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{4} \left( \sigma^{(i-1)} \right)^{2} + 2 \tilde{\gamma}_{3} a_{i}^3 \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} - 2 \tilde{\gamma}_{5} a_{i}^{2} \nu^{(i-1)} \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.115\linewidth} &\quad - 2 \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \sigma^{(i-1)} \alpha_{B}^{(i-1, i-1)} - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{1, B}^{(i-1, i-1)} - \tilde{\beta} a_{i} \left(\alpha_{B}^{(i-1, i-1)} \right)^{2},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 5
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{0.0\linewidth} \delta_{5, A}^{(i, i-1)} &= \delta_{5, B}^{(i-1, i-1)} + \tilde{\delta}_{5} a_{i}^{4} \left( \sigma^{(i-1)} \right)^{3} - \left( \tilde{\delta}_{10} + 3 \tilde{\delta}_{11} + 3 \tilde{\delta}_{12} + \tilde{\delta}_{13} \right) a_{i}^{3} \nu^{(i-1)}\left( \sigma^{(i-1)} \right)^{3} - \\
+    \hspace{0.0\linewidth} &\quad - \left( 5 \tilde{\delta}_{15} + 5 \tilde{\delta}_{16} + 3 \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{3} - 5 \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{3} + \\
+    \hspace{0.0\linewidth} &\quad + \tilde{\gamma}_{2} a_{i}^{3} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - \left( \tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{0.0\linewidth} &\quad - \left( 2 \tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \nu^{(i-1)} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - 3 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{0.0\linewidth} &\quad - 2 \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - 3 \tilde{\alpha} a_{i}^{2} \gamma_{4, B}^{(i-1, i-1)} - \tilde{\alpha} a_{i}^{2} \gamma_{5, B}^{(i-1, i-1)} + 3 \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{4, B}^{(i-1, i-1)} + \\
+    \hspace{0.0\linewidth} &\quad + \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{5, B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \alpha_{B}^{(i-1, i-1)} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 6
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.195\linewidth} \delta_{6, A}^{(i, i-1)} &= \delta_{6, B}^{(i-1, i-1)} + \tilde{\delta}_{6} a_{i}^{4} \left( \sigma^{(i-1)} \right)^{3} - \left( \tilde{\delta}_{10} - \tilde{\delta}_{11} - 3 \tilde{\delta}_{12} + \tilde{\delta}_{14} \right) a_{i}^{3} \nu^{(i-1)}\left( \sigma^{(i-1)} \right)^{3} + \\
+    \hspace{-0.195\linewidth} &\quad + \left( \tilde{\delta}_{15} + 3 \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{3} + \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{3} - \\
+    \hspace{-0.195\linewidth} &\quad - 3 \tilde{\gamma}_{2} a_{i}^{3} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} + \left( 3 \tilde{\gamma}_{4} + 2 \tilde{\gamma}_{5} \right) a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} + \\
+    \hspace{-0.195\linewidth} &\quad + \left( 6 \tilde{\gamma}_{4} + 3 \tilde{\gamma}_{5} \right) a_{i}^{2} \nu^{(i-1)} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} + 7 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} + \\
+    \hspace{-0.195\linewidth} &\quad + 6 \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} + 3 \tilde{\alpha} a_{i}^{2} \gamma_{4, B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{2, B}^{(i-1, i-1)} - \\
+    \hspace{-0.195\linewidth} &\quad - 3 \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{4, B}^{(i-1, i-1)} - 2 \tilde{\beta} a_{i} \alpha_{B}^{(i-1, i-1)} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 7
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.195\linewidth} \delta_{7, A}^{(i, i-1)} &= \delta_{7, B}^{(i-1, i-1)} + \tilde{\delta}_{7} a_{i}^{4} \left( \sigma^{(i-1)} \right)^{3} - \left( \tilde{\delta}_{10} + \tilde{\delta}_{11} + \tilde{\delta}_{12} \right) a_{i}^{3} \nu^{(i-1)}\left( \sigma^{(i-1)} \right)^{3} - \\
+    \hspace{-0.195\linewidth} &\quad - \left( 2 \tilde{\delta}_{15} + \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{3} - 2 \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{3} + \\
+    \hspace{-0.195\linewidth} &\quad + \left( \tilde{\gamma}_{2} + \tilde{\gamma}_{3} \right) a_{i}^{3} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - 3 \tilde{\gamma}_{4} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.195\linewidth} &\quad - 2 \left( \tilde{\gamma}_{4} + \tilde{\gamma}_{5} \right) a_{i}^{2} \nu^{(i-1)} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - 3 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.195\linewidth} &\quad - 3 \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - \tilde{\alpha} a_{i}^{2} \gamma_{4, B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{3, B}^{(i-1, i-1)} + \\
+    \hspace{-0.195\linewidth} &\quad + \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{4, B}^{(i-1, i-1)} - \tilde{\beta} a_{i} \alpha_{B}^{(i-1, i-1)} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 8
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.085\linewidth} \delta_{8, A}^{(i, i-1)} &= \delta_{8, B}^{(i-1, i-1)} + \tilde{\delta}_{8} a_{i}^{4} \left( \sigma^{(i-1)} \right)^{3} - \left( \tilde{\delta}_{13} + 2 \tilde{\delta}_{14} \right) a_{i}^{3} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{3} - \\
+    \hspace{-0.085\linewidth} &\quad - \left( \tilde{\delta}_{16} + 2 \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{3} - 3 \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{3} - \\
+    \hspace{-0.085\linewidth} &\quad - 2 \tilde{\gamma}_{5} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} - 4 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \alpha_{B}^{(i-1, i-1)} - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{3, B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 9
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.005\linewidth} \delta_{9, A}^{(i, i-1)} &= \delta_{9, B}^{(i-1, i-1)} + \tilde{\delta}_{9} a_{i}^{4} \left( \sigma^{(i-1)} \right)^{3} - \left( 2 \tilde{\delta}_{12} + \tilde{\delta}_{13} \right) a_{i}^{3} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{3} - \\
+    \hspace{-0.005\linewidth} &\quad - \left( 2 \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{3} - \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{3} \left( \sigma^{(i-1)} \right)^{3} - 2 \tilde{\gamma}_{3} a_{i}^{3} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.005\linewidth} &\quad + 2 \tilde{\gamma}_{5} a_{i}^{2} \nu^{(i-1)} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} + 2 \tilde{\gamma}_{6} a_{i} \left( \nu^{(i-1)} \right)^{2} \sigma^{(i-1)} \beta_{B}^{(i-1, i-1)} - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{2, B}^{(i-1, i-1)} + \\
+    \hspace{-0.005\linewidth} &\quad + 2 \tilde{\beta} a_{i} \alpha_{B}^{(i-1, i-1)} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 10
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.01\linewidth} \delta_{10, A}^{(i, i-1)} &= \delta_{10, B}^{(i-1, i-1)} + \tilde{\delta}_{10} a_{i}^{3} \left( \sigma^{(i-1)} \right)^{4} + \left( \tilde{\delta}_{15} - \tilde{\delta}_{16} \right) a_{i}^{2} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{4} + \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{4} - \\
+    \hspace{-0.01\linewidth} &\quad - \left( 2 \tilde{\gamma}_{4} - \tilde{\gamma}_{5} \right) a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} - \tilde{\gamma}_{6} a_{i} \left( \sigma^{(i-1)} \right)^{3} \alpha_{B}^{(i-1, i-1)} - \tilde{\alpha} a_{i}^{2} \gamma_{6, B}^{(i-1, i-1)} + \\
+    \hspace{-0.01\linewidth} &\quad + \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{5, B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{6, B}^{(i-1, i-1)} - \tilde{\beta} a_{i} \left( \beta_{B}^{(i-1, i-1)} \right)^{2},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 11
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{0.0\linewidth} \delta_{11, A}^{(i, i-1)} &= \delta_{11, B}^{(i-1, i-1)} + \tilde{\delta}_{11} a_{i}^{3} \left( \sigma^{(i-1)} \right)^{4} + \left( 3 \tilde{\delta}_{15} + 2 \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{4} + \\
+    \hspace{0.0\linewidth} &\quad + 3 \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{4} + \tilde{\gamma}_{4} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} + \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} + \\
+    \hspace{0.0\linewidth} &\quad + 2 \tilde{\alpha} a_{i}^{2} \gamma_{6, B}^{(i-1, i-1)} + \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{4, B}^{(i-1, i-1)} - 2 \tilde{\beta} a_{i} \nu^{(i-1)} \gamma_{6, B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 12
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{0.0\linewidth} \delta_{12, A}^{(i, i-1)} &= \delta_{12, B}^{(i-1, i-1)} + \tilde{\delta}_{12} a_{i}^{3} \left( \sigma^{(i-1)} \right)^{4} + \left( \tilde{\delta}_{16} + \tilde{\delta}_{17} \right) a_{i}^{2} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{4} + 2 \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{4} + \\
+    \hspace{0.0\linewidth} &\quad + \tilde{\gamma}_{5} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} + 4 \tilde{\gamma}_{6} a_{i} \left( \sigma^{(i-1)} \right)^{3} \alpha_{B}^{(i-1, i-1)} + 2 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} - \\
+    \hspace{0.0\linewidth} &\quad - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{4, B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 13
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.1125\linewidth} \delta_{13, A}^{(i, i-1)} &= \delta_{13, B}^{(i-1, i-1)} + \tilde{\delta}_{13} a_{i}^{3} \left( \sigma^{(i-1)} \right)^{4} + 2 \tilde{\delta}_{16} a_{i}^{2} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{4} - \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{4} - \\
+    \hspace{-0.1125\linewidth} &\quad - 4 \tilde{\gamma}_{5} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} - 8 \tilde{\gamma}_{6} a_{i} \left( \sigma^{(i-1)} \right)^{3} \alpha_{B}^{(i-1, i-1)} - \\
+    \hspace{-0.1125\linewidth} &\quad - 8 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{5, B}^{(i-1, i-1)} + 2 \tilde{\beta} a_{i} \left( \beta_{B}^{(i-1, i-1)} \right)^{2},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 14
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{0.0\linewidth} \delta_{14, A}^{(i, i-1)} &= \delta_{14, B}^{(i-1, i-1)} + \tilde{\delta}_{14} a_{i}^{3} \left(\sigma^{(i-1)} \right)^{4} + 2 \tilde{\delta}_{17} a_{i}^{2} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{4} + 5 \tilde{\delta}_{18} a_{i} \left( \nu^{(i-1)} \right)^{2} \left( \sigma^{(i-1)} \right)^{4} + \\
+    \hspace{0.0\linewidth} &\quad + \tilde{\gamma}_{5} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} + 6 \tilde{\gamma}_{6} a_{i} \left( \sigma^{(i-1)} \right)^{3} \alpha_{B}^{(i-1, i-1)} + 2 \tilde{\gamma}_{6} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{2} \beta_{B}^{(i-1, i-1)} - \\
+    \hspace{0.0\linewidth} &\quad - \tilde{\beta} a_{i} \left( \beta_{B}^{(i-1, i-1)} \right)^{2},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 15
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.135\linewidth} \delta_{15, A}^{(i, i-1)} &= \delta_{15, B}^{(i-1, i-1)} + \tilde{\delta}_{15} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{5} + \tilde{\delta}_{18} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{5} + \tilde{\gamma}_{6} a_{i} \left( \sigma^{(i-1)} \right)^{3} \beta_{B}^{(i-1, i-1)} + \\
+    \hspace{-0.135\linewidth} &\quad + \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{6, B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 16
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.185\linewidth} \delta_{16, A}^{(i, i-1)} &= \delta_{16, B}^{(i-1, i-1)} + \tilde{\delta}_{16} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{5} - \tilde{\delta}_{18} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{5} - 2 \tilde{\beta} a_{i} \sigma^{(i-1)} \gamma_{6, B}^{(i-1, i-1)}, \\
+  \end{aligned}
+\end{equation}
+}
+
+% delta 17
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.105\linewidth} \delta_{17, A}^{(i, i-1)} &= \delta_{17, B}^{(i-1, i-1)} + \tilde{\delta}_{17} a_{i}^{2} \left( \sigma^{(i-1)} \right)^{5} + 5 \tilde{\delta}_{18} a_{i} \nu^{(i-1)} \left( \sigma^{(i-1)} \right)^{5} - 2 \tilde{\gamma}_{6} a_{i} \left( \sigma^{(i-1)} \right)^{3} \beta_{B}^{(i-1, i-1)},
+  \end{aligned}
+\end{equation}
+}
+
+% delta 18
+{\footnotesize
+\begin{equation}
+  \begin{aligned}
+    \hspace{-0.483\linewidth} \delta_{18, A}^{(i, i-1)} &= \delta_{18, B}^{(i-1, i-1)} + \tilde{\delta}_{18} a_{i} \left( \sigma^{(i-1)} \right)^{6}.
+  \end{aligned}
+\end{equation}
+}
+
+\end{document}
+
