@@ -1,0 +1,19 @@
+# Routine and mode specification
+routine = 1
+mode = 1
+scalar_type = double
+
+# Save directory path (if empty no writing occurs)
+#save_dir = save_dir = path_to_dir/saved_schemes
+
+# General parameters
+order = 6
+no_cycles = 8
+
+# Specific parameters
+method = scratch
+#a_eval = 
+#b_eval = 
+load_dir = ../Data/Symbolic_Scheme/double/saved_schemes/
+steps = 1
+verbose = 1

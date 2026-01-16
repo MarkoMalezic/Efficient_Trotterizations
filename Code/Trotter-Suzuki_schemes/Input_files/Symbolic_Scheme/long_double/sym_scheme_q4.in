@@ -1,0 +1,19 @@
+# Routine and mode specification
+routine = 1
+mode = 1
+scalar_type = long_double
+
+# Save directory path (if empty no writing occurs)
+#save_dir = save_dir = path_to_dir/saved_schemes
+
+# General parameters
+order = 6
+no_cycles = 4
+
+# Specific parameters
+method = scratch
+a_eval = -1.15055295822107171732, -0.15998298255224968368, 2.31053594077332140094
+b_eval = 3.51551287438695708211, -2.51551287438695708211
+load_dir = ../Data/Symbolic_Scheme/long_double/saved_schemes/
+steps = 1
+verbose = 1

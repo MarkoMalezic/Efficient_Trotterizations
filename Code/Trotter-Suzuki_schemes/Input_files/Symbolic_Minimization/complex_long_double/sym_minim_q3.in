@@ -1,0 +1,38 @@
+# Routine and mode specification
+routine = 0
+mode = 1
+scalar_type = complex_long_double
+
+# Save directory path (if empty no writing occurs)
+save_dir = ../Data/Symbolic_Minimization/complex_long_double/
+
+# General parameters
+order = 4
+no_cycles = 3
+
+# Specific parameters
+method = min_twostep
+a_init = 0.67560359597982881750 + i0.13458627249080669632, 0.32439640402017118250 - i0.13458627249080669632
+b_init = 0.35120719195965763385 + i0.26917254498161339243, 0.64879280804034236615 - i0.26917254498161339243
+# Minimization hyperparameters
+eps1 = 1e-20, 1e-20, 1e-40, 1e-3
+eps2 = 1e-20, 1e-20, 0.0, 1e-3
+wi = 1.0, 1e-1
+step = 1e-5
+n_iter = 10000
+Ls = 9.0, 11.0
+lambda = 0.25
+# Minima finder parameters
+N = 1000
+steps = 2
+#threshold = 1.0
+mu = 0.0 + i0.0
+sigma = 2.0 + i2.0
+#des_prob = 
+#bsort = 
+# Verbose option
+verbose = 0
+# Minima comparison parameter
+tol = 1e-8
+# Hessian freeze option
+freeze = 0

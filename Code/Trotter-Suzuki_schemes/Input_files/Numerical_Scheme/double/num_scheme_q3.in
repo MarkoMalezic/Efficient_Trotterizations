@@ -1,0 +1,16 @@
+# Routine and mode specification
+routine = 1
+mode = 0
+scalar_type = double
+
+# Save directory path (if empty no writing occurs)
+save_dir = ../Data/Numerical_Scheme/double/
+
+# General parameters
+order = 6
+no_cycles = 3
+
+# Specific parameters
+a_eval = -0.3512071919596576, 1.3512071919596575
+b_eval = -1.7024143839193151, 2.7024143839193151
+verbose = 0

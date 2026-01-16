@@ -1,0 +1,38 @@
+# Routine and mode specification
+routine = 0
+mode = 0
+scalar_type = double
+
+# Save directory path (if empty no writing occurs)
+save_dir = ../Data/Numerical_Minimization/double/
+
+# General parameters
+order = 4
+no_cycles = 5
+
+# Specific parameters
+method = find
+a_init = -0.1, 0.9, 0.2
+b_init = 0.8, -0.3, 0.5
+# Minimization hyperparameters
+eps1 = 1e-15, 1e-15, 1e-30, 1e-3
+eps2 = 1e-18, 1e-18, 0.0, 1e-3
+wi = 1.0, 1e-1
+step = 1e-5
+n_iter = 1000
+Ls = 9.0, 11.0
+lambda = 0.25
+# Minima finder parameters
+N = 1000
+steps = 2
+#threshold = 1.0
+mu = 0.0
+sigma = 1.0
+#des_prob = 
+#bsort = 
+# Verbose option
+verbose = 0
+# Minima comparison parameter
+tol = 1e-4
+# Hessian freeze option
+freeze = 0

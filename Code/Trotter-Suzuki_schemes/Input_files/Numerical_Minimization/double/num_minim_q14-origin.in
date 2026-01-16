@@ -1,0 +1,40 @@
+# Routine and mode specification
+routine = 0
+mode = 0
+scalar_type = double
+
+# Save directory path (if empty no writing occurs)
+save_dir = /home/mmalezic_hpc/Projects/Trotterization/Code/Coefficients/Data/Numerical_Minimization/double/
+
+# General parameters
+order = 6
+no_cycles = 14
+
+# Specific parameters
+method = find_origin
+a_init = 0.14552703182083809308, 0.41389166817196537673, -0.03263421697578004765, 0.72251898786459545221, -0.92855516235306612138, 0.03612251104720301531, 0.57149822594276988852, 0.07163095448147428768
+b_init = 0.31174927800386875720, -0.19772516916773696938, 0.77336682245562660132, -0.00293158346289844590, 0.15306879610400320191, -0.26571436390656821835, 0.22818621997370505672
+# Minimization hyperparameters
+eps1 = 1e-15, 1e-15, 1e-30, 1e-3
+eps2 = 1e-18, 1e-18, 0.0, 1e-3
+wi = 1e0, 40, 80.0
+step = 1e-5
+n_iter = 2000
+Ls = 9.0, 11.0
+lambda = 0.25
+ratio = 1.4302e-06
+#ratio = 0.0
+# Minima finder parameters
+N = 1000
+steps = 2
+threshold = 1e-22
+mu = 0.0
+sigma = 0.5
+#des_prob = 
+#bsort = 
+# Verbose option
+verbose = 0
+# Minima comparison parameter
+tol = 1e-4
+# Hessian freeze option
+freeze = 0

@@ -1,0 +1,38 @@
+# Routine and mode specification
+routine = 0
+mode = 0
+scalar_type = complex_long_double
+
+# Save directory path (if empty no writing occurs)
+save_dir = ../Data/Numerical_Minimization/complex_long_double/
+
+# General parameters
+order = 4
+no_cycles = 3
+
+# Specific parameters
+method = min_twostep
+a_init = -0.4 + i0.0, 1.4 - i0.0
+b_init = -1.5 + i0.0, 2.5 - i0.0
+# Minimization hyperparameters
+eps1 = 1e-15, 1e-15, 1e-30, 1e-3
+eps2 = 1e-22, 1e-22, 0.0, 1e-3
+wi = 1.0, 1e-1
+step = 1e-5
+n_iter = 10000
+Ls = 9.0, 11.0
+lambda = 0.25
+# Minima finder parameters
+N = 1000
+steps = 2
+#threshold = 1.0
+mu = 0.0 + i0.0
+sigma = 2.0 + i2.0
+#des_prob = 
+#bsort = 
+# Verbose option
+verbose = 0
+# Minima comparison parameter
+tol = 1e-8
+# Hessian freeze option
+freeze = 0

@@ -1,0 +1,39 @@
+# Routine and mode specification
+routine = 0
+mode = 1
+scalar_type = long_double
+
+# Save directory path (if empty no writing occurs)
+save_dir = ../Data/Symbolic_Minimization/long_double/
+
+# General parameters
+order = 6
+no_cycles = 11
+
+# Specific parameters
+method = min_twostep
+a_init = -0.02268179052384404165, 0.55133984303313113393, -0.21249182133966975520, 0.08309804054866422524, 0.49645166785852655553, 0.10428406042319188218
+b_init = -0.85638251145677624305, 1.19118787500340823232, 0.66182474096972484986, 0.15898476151503791960, -0.39930743068533728975, 0.24369256465394253095
+load_dir = ../Data/Symbolic_Scheme/long_double/saved_schemes/
+bderivs = true
+# Minimization hyperparameters
+eps1 = 1e-20, 1e-20, 1e-36, 1e-3
+eps2 = 1e-20, 1e-20, 0.0, 1e-3
+wi = 1.0, 5e2, 1e-1
+n_iter = 500
+Ls = 9.0, 11.0
+lambda = 0.25
+# Minima finder parameters
+N = 1000
+steps = 2
+#threshold = 1.0
+mu = 0.0
+sigma = 2.0
+#des_prob = 
+#bsort = 
+# Verbose option
+verbose = 1
+# Minima comparison parameter
+tol = 1e-8
+# Hessian freeze option
+freeze = 0

@@ -1,0 +1,16 @@
+# Routine and mode specification
+routine = 1
+mode = 0
+scalar_type = complex_long_double
+
+# Save directory path (if empty no writing occurs)
+save_dir = ../Data/Numerical_Scheme/complex_long_double/
+
+# General parameters
+order = 6
+no_cycles = 5
+
+# Specific parameters
+a_eval = 0.443910631400157 + i0.018053494910710, 0.403980237164086 + i0.052215259752242, 0.152109131435756 - i0.070268754662953
+b_eval = 0.240752423969085 - i0.135806923849922, 0.427554010273432 + i0.277121641447677, 0.331693565757483 - i0.141314717597754
+verbose = 0

@@ -1,0 +1,8 @@
+Build:
+1. Create and go to build directory
+2. Run cmake -DCMAKE_BUILD_TYPE=TYPE -DUSE_O3=BOOL .. (TYPE = Release or Debug, BOOL = ON or OFF)
+3. Run cmake --build .
+
+Run:
+1. Create an IO file according to desired routine (examples in directory Input_files)
+2. Run path_to_main path_to_IO
