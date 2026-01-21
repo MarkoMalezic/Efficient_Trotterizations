@@ -14,6 +14,7 @@ A copy of the license is available at https://www.mozilla.org/MPL/2.0/.
 Wolfram Mathematica
 -------------------
 This repository includes scripts written in the Wolfram Language (Mathematica).
+Mathematica is avaliable at https://www.wolfram.com/mathematica/
 
 These scripts are licensed under the same license as the rest of the
 repository (MIT License). Running them requires a licensed copy of Wolfram Mathematica.
