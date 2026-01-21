@@ -7,6 +7,13 @@ The code is written in C++, with a dependency on the Eigen linear algebra librar
 The building is done by CMake (see `CMakeLists.txt`) and the instructions for this can be found inside `build-run_instructions.txt`.
 The class structure can be seen in the schematic below.
 
+## Dependency graph
+
+The diagram below provides an overview of the class structure.
+It illustrates the dependencies between the symbolic and numeric components, as well as the shared helper modules that connect them.
+
+![Class structure](Class_structure.png)
+
 ## Routines
 
 The program is structured in a way that allows for a symbolic evaluation of schemes as well as a numeric one.
@@ -37,7 +44,7 @@ Parameters:
 
 ### Numerical Minimization (routine: 0, mode: 0)
 
-Numerically minimizes a scheme according to a subroutine.
+Numerically minimizes a scheme according to a subroutine (method).
 The shared parameters between schemes are:
 - save_dir (string): Path to save directory
 - order (2, 4, 6): Order of the scheme
@@ -112,11 +119,77 @@ Returns a table of found minima along with their theoretical efficiencies.
 Additional hyperparameters:
 - ratio (scalar_precision): Ratio between the leading order error and the distance from the origin term
 
+### Symbolic Scheme (routine: 1, mode: 1)
 
-## Dependency graph
+Symbolically computes the scheme coefficients and evaluates a scheme for some evaluation parameters a_eval and b_eval, which are multiplied by 1/2 in relation to those found in the paper (Important distinction!).
+Returns the theoretical error and the efficiency per order.
+There exist a few subroutines (methods), which allow for easier computation of higher order schemes, if the lower ones are already known.
 
-The diagram below provides an overview of the class structure.
-It illustrates the dependencies between the symbolic and numeric components, as well as the shared helper modules that connect them.
+Parameters:
+- save_dir (string): Path to save directory (It is possible to save the computed coefficient tensors)
+- order (2, 4, 6): Order of the scheme
+- no_cycles (1, 2, 3, ...): Number of cycles
+- a_eval (vector<scalar_type>): A vector of scheme evaluation parameters a
+- b_eval (vector<scalar_type>): A vector of scheme evaluation parameters b
+- verbose (0, 1, 2): Option to print polynomials/tensors of scheme coefficients between iterations
 
-![Class structure](Class_structure.png)
+Subroutines:
+- scratch: Compute the scheme coefficients from the first iteration and evaluate them to get the error and efficiency
+- load: Load the coefficients tensors and evaluate them to get the error and efficiency
+- load_iterate: Load the coefficient tensors and iterate them for a given number of steps (additional parameter of type int) - Then evaluate the coefficients and to get the error and efficiency
 
+### Symbolic Minimization (routine: 0, mode: 1)
+
+Minimization of symbolic scheme coefficients according to a subroutine (method).
+The shared parameters between schemes are:
+- save_dir (string): Path to save directory
+- order (2, 4, 6): Order of the scheme
+- no_cycles (1, 2, 3, ...): Number of cycles
+- method (string): Subroutine name
+- load_dir (string): Path to a directory where the scheme is saved (optional)
+-bderivs (false/true): if true the derivatives are calculated symbolically, which in theory allows for more precise minimization
+
+#### Subroutine: minimize
+
+Minimizes once with given initial parameters and returns the evaluated theoretical error and efficiency per order.
+
+Hyperparameters:
+- a_init (vector<scalar_type>): A vector of initial scheme parameters a
+- b_init (vector<scalar_type>): A vector of initial scheme parameters b
+- eps1 (array<scalar_precision, 4>): an array of convergence criteria and acceptance condition
+- wi (vector<scalar_precision>): a vector of weights per order
+- step (scalar_precision): derivative step size
+- n_iter (int): Number of iterations before stopping the minimization
+- Ls (array<scalar_precision, 2>): lambda iteration update constants
+- lambda (scalar_precision): initial lambda value
+
+#### Subroutine: min_twostep
+
+Minimizes with two steps with given initial parameters and returns the evaluated theoretical error and efficiency per order.
+First step minimizes the full chi2 function, while the second one imposes the constraints.
+
+Hyperparameters:
+- a_init (vector<scalar_type>): A vector of initial scheme parameters a
+- b_init (vector<scalar_type>): A vector of initial scheme parameters b
+- eps1 (array<scalar_type, 4>): an array of convergence criteria and acceptance condition for the first step
+- eps2 (array<scalar_type, 4>): an array of convergence criteria and acceptance condition for the second step
+- wi (vector<scalar_type>): a vector of weights per order
+- step (scalar_type): derivative step size
+- n_iter (int): Number of iterations before stopping the minimization
+- Ls (array<scalar_type, 2>): lambda iteration update constants
+- lambda (scalar_type): initial lambda value
+- freeze (0, 1): Boolean to either freeze the Hessian or not(1)
+
+#### Subroutine: find
+
+Runs the minimizer many times with random initial conditions to find as many distinct minima.
+Returns a table of found minima along with their theoretical efficiencies.
+
+Additional hyperparameters:
+- N (int): Number of initial conditions to minimize
+- steps (1, 2): How many steps to take for the minimization - runs either minimize(1) or min_twostep(2)
+- threshold (scalar_precision): Threshold to cut unconverged schemes
+- mu (scalar_precision): Mean of the normal distribution, which samples the initial conditions
+- sigma (scalar_precision): The standard deviation, which samples the initial conditions
+- tol (scalar_precision): Comparison tolerance between similar converged schemes
+- freeze (0, 1): Boolean to either freeze (1) the Hessian or not(0)
