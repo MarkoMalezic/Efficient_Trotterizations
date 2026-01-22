@@ -1,6 +1,6 @@
 # Efficient High Order Trotterizations
 
-A derivation, implementation and application of Trotter-Suzuki decomposition schemes at high order.
+A derivation, implementation and application of Trotter-Suzuki decomposition schemes at high orders.
 
 This repository contains the code required to reproduce the results presented in "Efficient Trotter-Suzuki Schemes for Long-time Quantum Dynamics".
 It also stores novel schemes at order n = 2, 4, 6 in different formats.
@@ -48,7 +48,7 @@ Further details can be found in `README-Heisenberg.md`.
 
 ### Error evolution animation
 
-Combining the theoretical error computed from schemes in [Schemes](/Code/Trotter-Suzuki_schemes/Data/Schemes) with the distance from the origin term as described in the paper, and plotting it against the experimental error, we can animate how the correlation improves if the extra term is added.
+Combining the theoretical error computed from schemes in the folder [Schemes](/Code/Trotter-Suzuki_schemes/Data/Schemes) with the distance from the origin term as described in the paper, and plotting it against the experimental error, we can animate how the correlation improves if the extra term is added.
 These animations can be found in [Error_comparison_animations](/Error_comparison_animations/) for each cycle and below for schemes at 14 cycles:
 
 https://github.com/user-attachments/assets/4b849066-d692-4371-99bd-90e1a6c7da17
