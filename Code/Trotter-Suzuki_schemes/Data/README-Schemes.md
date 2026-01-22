@@ -12,4 +12,3 @@ Additionally to the scheme parameters in the notation of our implementation, we 
 We also transform these into the general notation with the c and d scheme parameters as defined by Eq. (9).
 
 Finally, we collect all of these arrays in an HDF5 format in case they need to be read differently. However, loss of precision is possible due to HDF5 not supporting long_double/float128 in all formats. 
-
