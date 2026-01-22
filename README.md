@@ -4,9 +4,9 @@ A derivation, implementation and application of Trotter-Suzuki decomposition sch
 
 This repository contains the code required to reproduce the results presented in "Efficient Trotter-Suzuki Schemes for Long-time Quantum Dynamics".
 It also stores novel schemes at order n = 2, 4, 6 in different formats.
-More data and scripts for reproducibility can be found at Zenodo:
+Data for time evolution is not included in the repository, but it will be gladly provided upon request.
 
-For questions concerning the code contact: 
+For questions concerning the code contact: malezic@hiskp.uni-bonn.de
 
 ## Derivation
 
