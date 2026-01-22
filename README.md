@@ -51,4 +51,4 @@ Further details can be found in `README-Heisenberg.md`.
 Combining the theoretical error computed from schemes in the folder [Schemes](/Code/Trotter-Suzuki_schemes/Data/Schemes) with the distance from the origin term as described in the paper, and plotting it against the experimental error, we can animate how the correlation improves if the extra term is added.
 These animations can be found in [Error_comparison_animations](/Error_comparison_animations/) for each cycle and below for schemes at 14 cycles:
 
-https://github.com/user-attachments/assets/4b849066-d692-4371-99bd-90e1a6c7da17
+https://github.com/user-attachments/assets/2b385df9-96ee-408e-b8ad-27ea129d2447
