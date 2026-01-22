@@ -11,7 +11,7 @@ For questions concerning the code contact:
 ## Derivation
 
 The main part of the derivations for Trotterizations are the recursive formulae found in a Mathematica notebook `Efficient_Trotterizations.nb` within [Recursive_formulae](Code/Recursive_formulae).
-In the same folder we gather the results of the recursive formulae in a slighly more readable form `Recursive_formulae.pdf`.
+In the same folder we gather the results of the recursive formulae in a slightly more readable form `Recursive_formulae.pdf`.
 
 Applying the formulae it is possible to construct polynomial manifolds, which are to be minimized in order to find efficient schemes.
 Computation of such manifolds for 2nd and 4th order and their visualizations can be found in [Manifolds](Code/Manifolds) directory, both as Mathematica notebooks and as standalone PDF images.
@@ -27,7 +27,7 @@ Furthermore, the routines split between scheme evaluation at specific parameters
 The program can be run by `/path_to_build/main input_file.in`, where the `input_file.in` specifies the routine and its parameters.
 More details on specific subroutines and their usage can be found in `README-Trotter.md` within [Trotter-Suzuki_schemes](Code/Trotter-Suzuki_schemes).
 
-In our minimization efforts we were able to find many Trotter-Suzuki schemes, which we gather inside [Schemes](/Code/Trotter-Suzuki_schemes/Data/Schemes) in a few formats/notations, which are explained in `README-Schemes.md`
+In our minimization efforts we were able to find many Trotter-Suzuki schemes, that are gathered inside [Schemes](/Code/Trotter-Suzuki_schemes/Schemes) in a few formats/notations, which are explained in `README-Schemes.md`
 
 ## Application
 
